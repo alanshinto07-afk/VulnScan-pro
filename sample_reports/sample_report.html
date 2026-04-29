@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>VulnScan Pro Report - http://127.0.0.1:5050/</title>
+<style>
+    :root { color-scheme: dark; }
+    body {
+        background: #0f1115; color: #e6e6e6;
+        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+        margin: 0; padding: 0;
+    }
+    header {
+        padding: 32px; background: linear-gradient(135deg,#1f2937,#0f172a);
+        border-bottom: 1px solid #334155;
+    }
+    header h1 { margin: 0; font-size: 28px; letter-spacing: 0.5px; }
+    header p { margin: 4px 0 0; color: #9aa0a6; }
+    .container { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+    .summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 24px 0; }
+    .card {
+        background: #1a1d24; padding: 16px; border-radius: 8px;
+        text-align: center;
+    }
+    .card-count { font-size: 32px; font-weight: 700; }
+    .card-label { font-size: 12px; letter-spacing: 1px; color: #9aa0a6; }
+    .meta-grid {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px;
+        background: #1a1d24; padding: 16px; border-radius: 8px;
+    }
+    .meta-grid div span { color: #9aa0a6; margin-right: 8px; }
+    h2 { margin-top: 32px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
+    table {
+        width: 100%; border-collapse: collapse; background: #1a1d24;
+        border-radius: 8px; overflow: hidden;
+    }
+    th, td { padding: 10px 12px; text-align: left; vertical-align: top;
+              border-bottom: 1px solid #2a2f3a; font-size: 14px; }
+    th { background: #11141a; text-transform: uppercase; font-size: 12px;
+          letter-spacing: 0.5px; color: #9aa0a6; }
+    tr:last-child td { border-bottom: none; }
+    .sev {
+        display: inline-block; padding: 2px 8px; border-radius: 4px;
+        font-size: 11px; font-weight: 700; color: #0f1115;
+    }
+    td.url { word-break: break-all; max-width: 260px; }
+    .no-findings { text-align: center; color: #9aa0a6; padding: 24px; }
+    pre { background: #0a0c10; padding: 8px; border-radius: 4px; overflow-x: auto; }
+    code { background: #0a0c10; padding: 2px 4px; border-radius: 3px; }
+    footer { margin: 48px 0 24px; text-align: center; color: #5a6270; font-size: 12px; }
+    .disclaimer {
+        background: #2a1a1a; border-left: 4px solid #ff3860; padding: 12px 16px;
+        border-radius: 4px; margin-bottom: 24px; color: #ffd5d5;
+    }
+    details summary { cursor: pointer; color: #58a6ff; }
+</style>
+</head>
+<body>
+<header>
+    <h1>VulnScan Pro - Vulnerability Report</h1>
+    <p>Target: <strong>http://127.0.0.1:5050/</strong></p>
+</header>
+<div class="container">
+    <div class="disclaimer"><strong>Disclaimer:</strong> VulnScan Pro is intended for AUTHORIZED security testing only. Running this tool against systems you do not own or have explicit written permission to test is illegal in most jurisdictions.</div>
+
+    <h2>Executive Summary</h2>
+    <p>The scan identified <strong>16</strong> issues (1 critical, 3 high, 3 medium, 7 low, 2 info). Review and triage the findings below; critical and high issues should be remediated as a priority.</p>
+    <div class="summary">
+            <div class="card" style="border-left: 6px solid #ff3860;">
+                <div class="card-count">1</div>
+                <div class="card-label">CRITICAL</div>
+            </div>
+            
+
+            <div class="card" style="border-left: 6px solid #ff6b35;">
+                <div class="card-count">3</div>
+                <div class="card-label">HIGH</div>
+            </div>
+            
+
+            <div class="card" style="border-left: 6px solid #ffb347;">
+                <div class="card-count">3</div>
+                <div class="card-label">MEDIUM</div>
+            </div>
+            
+
+            <div class="card" style="border-left: 6px solid #3abff8;">
+                <div class="card-count">7</div>
+                <div class="card-label">LOW</div>
+            </div>
+            
+
+            <div class="card" style="border-left: 6px solid #9aa0a6;">
+                <div class="card-count">2</div>
+                <div class="card-label">INFO</div>
+            </div>
+            </div>
+
+    <h2>Scan Metadata</h2>
+    <div class="meta-grid">
+        <div><span>Started:</span>2026-04-29 05:42:53 UTC</div>
+        <div><span>Finished:</span>2026-04-29 05:43:09 UTC</div>
+        <div><span>Duration:</span>16.0s</div>
+        <div><span>Total findings:</span>16</div>
+        <div><span>Server:</span>Werkzeug/3.1.8 Python/3.12.8</div>
+        <div><span>Technology:</span>Unknown</div>
+        <div><span>WAF:</span>Not detected</div>
+        <div><span>Modules run:</span>sqli, xss, csrf, traversal, headers, discovery</div>
+    </div>
+
+    <h2>Findings</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th><th>Severity</th><th>Module</th><th>Name</th>
+                <th>URL</th><th>CVSS</th><th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><span class="sev" style="background:#ff3860">CRITICAL</span></td>
+                <td>sqli</td>
+                <td>SQL Injection</td>
+                <td class="url">http://127.0.0.1:5050/sqli?id=1</td>
+                <td>9.8</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Parameter &#x27;id&#x27; on GET http://127.0.0.1:5050/sqli?id=1 is vulnerable to SQL injection. The application reflects database-level errors or differential responses when SQL metacharacters are sent.</p>
+                        <p><strong>Parameter:</strong> id
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>&#x27; OR 1=1--</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>You have an error in your SQL syntax
+---
+You have an error in your SQL syntax; check the manual for MySQL server</pre>
+                        <p><strong>Remediation:</strong> Use parameterized queries / prepared statements with bound parameters. Validate and whitelist input where possible. Apply least-privilege database accounts and disable verbose error pages in production.</p>
+                        <p><em>Detected at 2026-04-29 05:42:55 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>2</td>
+                <td><span class="sev" style="background:#ff6b35">HIGH</span></td>
+                <td>xss</td>
+                <td>Reflected XSS</td>
+                <td class="url">http://127.0.0.1:5050/search?q=%3Cscript%3Ealert%28%27vsx0106af00%27%29%3C%2Fscript%3E</td>
+                <td>7.5</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Reflected XSS: parameter &#x27;q&#x27; on GET http://127.0.0.1:5050/search?q=%3Cscript%3Ealert%28%27vsx0106af00%27%29%3C%2Fscript%3E reflects the supplied payload in the response without proper encoding. An attacker can execute JavaScript in the victim&#x27;s browser context.</p>
+                        <p><strong>Parameter:</strong> q
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>&lt;script&gt;alert(&#x27;vsx0106af00&#x27;)&lt;/script&gt;</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>&lt;p&gt;Results for: &lt;script&gt;alert(&#x27;vsx0106af00&#x27;)&lt;/script&gt;&lt;/p&gt;</pre>
+                        <p><strong>Remediation:</strong> Apply context-aware output encoding (HTML, attribute, JavaScript, URL). Use a strict Content-Security-Policy. Validate and reject input containing HTML/JS where it is not expected. Frameworks like React/Angular auto-escape - avoid using innerHTML / dangerouslySetInnerHTML.</p>
+                        <p><em>Detected at 2026-04-29 05:43:00 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>3</td>
+                <td><span class="sev" style="background:#ff6b35">HIGH</span></td>
+                <td>xss</td>
+                <td>Reflected XSS</td>
+                <td class="url">http://127.0.0.1:5050/file?name=%3Cscript%3Ealert%28%27vsxfdb10f2b%27%29%3C%2Fscript%3E</td>
+                <td>7.5</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Reflected XSS: parameter &#x27;name&#x27; on GET http://127.0.0.1:5050/file?name=%3Cscript%3Ealert%28%27vsxfdb10f2b%27%29%3C%2Fscript%3E reflects the supplied payload in the response without proper encoding. An attacker can execute JavaScript in the victim&#x27;s browser context.</p>
+                        <p><strong>Parameter:</strong> name
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>&lt;script&gt;alert(&#x27;vsxfdb10f2b&#x27;)&lt;/script&gt;</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>file: &lt;script&gt;alert(&#x27;vsxfdb10f2b&#x27;)&lt;/script&gt;</pre>
+                        <p><strong>Remediation:</strong> Apply context-aware output encoding (HTML, attribute, JavaScript, URL). Use a strict Content-Security-Policy. Validate and reject input containing HTML/JS where it is not expected. Frameworks like React/Angular auto-escape - avoid using innerHTML / dangerouslySetInnerHTML.</p>
+                        <p><em>Detected at 2026-04-29 05:43:00 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>4</td>
+                <td><span class="sev" style="background:#ff6b35">HIGH</span></td>
+                <td>xss</td>
+                <td>Reflected XSS</td>
+                <td class="url">http://127.0.0.1:5050/comment</td>
+                <td>7.5</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Reflected XSS: parameter &#x27;msg&#x27; on POST http://127.0.0.1:5050/comment reflects the supplied payload in the response without proper encoding. An attacker can execute JavaScript in the victim&#x27;s browser context.</p>
+                        <p><strong>Parameter:</strong> msg
+                        &nbsp;|&nbsp; <strong>Method:</strong> POST</p>
+                        <p><strong>Payload:</strong> <code>&lt;script&gt;alert(&#x27;vsxbf9bd168&#x27;)&lt;/script&gt;</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>&lt;html&gt;&lt;body&gt;&lt;h2&gt;Comments&lt;/h2&gt;test&lt;br&gt;&#x27; OR 1=1--&lt;br&gt;&#x27; OR &#x27;1&#x27;=&#x27;1&lt;br&gt;&#x27; OR &#x27;1&#x27;=&#x27;1&#x27;--&lt;br&gt;&#x27; OR &#x27;1&#x27;=&#x27;1&#x27;/*&lt;br&gt;&quot; OR &quot;1&quot;=&quot;1&lt;br&gt;&quot; OR &quot;1&quot;=&quot;1&quot;--&lt;br&gt;&#x27;) OR (&#x27;1&#x27;=&#x27;1&lt;br&gt;&#x27;) OR (&#x27;1&#x27;=&#x27;1&#x27;--&lt;br&gt;admin&#x27;--&lt;br&gt;admin&#x27; #&lt;br&gt;admin&#x27;/*&lt;br&gt;&#x27; UNION SELECT NULL--&lt;br&gt;&#x27; UNION SELECT NULL,NULL--&lt;br&gt;&#x27; UNION SELECT NULL,NULL,NULL--&lt;br&gt;&#x27; AND SLEEP(2)--&lt;br&gt;&quot;; DROP TABLE users--&lt;br&gt;1&#x27; AND 1=1--&lt;br&gt;1&#x27; AND 1=2--&lt;br&gt;1 OR 1=1&lt;br&gt;1) OR 1=1--&lt;br&gt;&#x27; OR &#x27;1&#x27;=&#x27;1&lt;br&gt;&#x27; AND &#x27;1&#x27;=&#x27;2&lt;br&gt;&lt;script&gt;alert(&#x27;vsxbf9bd168&#x27;)&lt;/script&gt;&lt;form method=&#x27;POST&#x27;&gt;&lt;input name=&#x27;msg&#x27;&gt;&lt;input type=&#x27;submit&#x27;&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;</pre>
+                        <p><strong>Remediation:</strong> Apply context-aware output encoding (HTML, attribute, JavaScript, URL). Use a strict Content-Security-Policy. Validate and reject input containing HTML/JS where it is not expected. Frameworks like React/Angular auto-escape - avoid using innerHTML / dangerouslySetInnerHTML.</p>
+                        <p><em>Detected at 2026-04-29 05:43:00 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>5</td>
+                <td><span class="sev" style="background:#ffb347">MEDIUM</span></td>
+                <td>csrf</td>
+                <td>Missing CSRF token</td>
+                <td class="url">http://127.0.0.1:5050/comment</td>
+                <td>5.4</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> The POST form on http://127.0.0.1:5050/ (action=http://127.0.0.1:5050/comment) does not contain a recognizable anti-CSRF token. An attacker can trick an authenticated user into submitting this form via a cross-origin request.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> POST</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Inputs: [&#x27;msg&#x27;]</pre>
+                        <p><strong>Remediation:</strong> Add an unpredictable, per-session anti-CSRF token to all state-changing forms (typically a hidden input plus a server-side verification step). Use the SameSite=Lax/Strict cookie attribute. For APIs, require a custom header that browsers will not send cross-origin without a preflight.</p>
+                        <p><em>Detected at 2026-04-29 05:43:02 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>6</td>
+                <td><span class="sev" style="background:#ffb347">MEDIUM</span></td>
+                <td>csrf</td>
+                <td>Missing CSRF token</td>
+                <td class="url">http://127.0.0.1:5050/transfer</td>
+                <td>5.4</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> The POST form on http://127.0.0.1:5050/ (action=http://127.0.0.1:5050/transfer) does not contain a recognizable anti-CSRF token. An attacker can trick an authenticated user into submitting this form via a cross-origin request.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> POST</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Inputs: [&#x27;amount&#x27;, &#x27;to&#x27;]</pre>
+                        <p><strong>Remediation:</strong> Add an unpredictable, per-session anti-CSRF token to all state-changing forms (typically a hidden input plus a server-side verification step). Use the SameSite=Lax/Strict cookie attribute. For APIs, require a custom header that browsers will not send cross-origin without a preflight.</p>
+                        <p><em>Detected at 2026-04-29 05:43:02 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>7</td>
+                <td><span class="sev" style="background:#ffb347">MEDIUM</span></td>
+                <td>traversal</td>
+                <td>Directory Traversal</td>
+                <td class="url">http://127.0.0.1:5050/file?name=..%2F..%2F..%2F..%2Fetc%2Fpasswd</td>
+                <td>5.4</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Path traversal via query parameter &#x27;name&#x27;. Linux /etc/passwd content detected.</p>
+                        <p><strong>Parameter:</strong> name
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>../../../../etc/passwd</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Linux /etc/passwd content detected
+---
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+</pre>
+                        <p><strong>Remediation:</strong> Never pass user input directly to file system APIs. Resolve and canonicalize paths, then verify they remain inside an allowlisted base directory. Reject input containing &#x27;..&#x27;, NUL bytes, or absolute paths. Run the application with least-privilege FS access.</p>
+                        <p><em>Detected at 2026-04-29 05:43:06 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>8</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: X-Frame-Options</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;X-Frame-Options&#x27; header. Prevents the page from being framed by other origins (clickjacking).</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Set to &#x27;SAMEORIGIN&#x27; or &#x27;DENY&#x27;, or rely on a &#x27;frame-ancestors&#x27; CSP directive.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>9</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: Content-Security-Policy</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;Content-Security-Policy&#x27; header. Restricts resource origins and is the strongest defense against XSS.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Define a strict CSP appropriate for your app; start with &#x27;default-src self&#x27;.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>10</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: X-XSS-Protection</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;X-XSS-Protection&#x27; header. Legacy browser XSS filter. Modern browsers ignore it but it is still checked by compliance tooling.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Set to &#x27;0&#x27; if you have a strong CSP, or &#x27;1; mode=block&#x27; for legacy clients.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>11</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: Strict-Transport-Security</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;Strict-Transport-Security&#x27; header. Forces browsers to use HTTPS for the configured domain.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Set &#x27;max-age=31536000; includeSubDomains; preload&#x27; on HTTPS endpoints.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>12</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: X-Content-Type-Options</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;X-Content-Type-Options&#x27; header. Disables MIME-type sniffing.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Set to &#x27;nosniff&#x27;.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>13</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: Referrer-Policy</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;Referrer-Policy&#x27; header. Controls how much referrer information is leaked.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Set to &#x27;strict-origin-when-cross-origin&#x27; or stricter.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>14</td>
+                <td><span class="sev" style="background:#3abff8">LOW</span></td>
+                <td>headers</td>
+                <td>Missing header: Permissions-Policy</td>
+                <td class="url">http://127.0.0.1:5050/</td>
+                <td>3.1</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> Response is missing the &#x27;Permissions-Policy&#x27; header. Restricts browser features the page can use.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>Response headers: {&#x27;Server&#x27;: &#x27;Werkzeug/3.1.8 Python/3.12.8&#x27;, &#x27;Date&#x27;: &#x27;Wed, 29 Apr 2026 05:43:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;text/html; charset=utf-8&#x27;, &#x27;Content-Length&#x27;: &#x27;343&#x27;, &#x27;Connection&#x27;: &#x27;close&#x27;}</pre>
+                        <p><strong>Remediation:</strong> Define a Permissions-Policy that disables unused features (camera, geolocation, etc.).</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>15</td>
+                <td><span class="sev" style="background:#9aa0a6">INFO</span></td>
+                <td>discovery</td>
+                <td>Sensitive resource exposed: /robots.txt</td>
+                <td class="url">http://127.0.0.1:5050/robots.txt</td>
+                <td>0.0</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> The path /robots.txt is publicly accessible (HTTP 200) and may leak configuration, credentials, version control metadata, or other sensitive information.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>User-agent: *
+Disallow: /admin
+</pre>
+                        <p><strong>Remediation:</strong> Restrict access to administrative, configuration, and version control artifacts. Block or 404 these paths at the web server / load balancer level. Audit deployments to ensure backup and dev files are never shipped to production.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>16</td>
+                <td><span class="sev" style="background:#9aa0a6">INFO</span></td>
+                <td>discovery</td>
+                <td>Sensitive resource exposed: /.env</td>
+                <td class="url">http://127.0.0.1:5050/.env</td>
+                <td>0.0</td>
+                <td>
+                    <details>
+                        <summary>View details</summary>
+                        <p><strong>Description:</strong> The path /.env is publicly accessible (HTTP 200) and may leak configuration, credentials, version control metadata, or other sensitive information.</p>
+                        <p><strong>Parameter:</strong> -
+                        &nbsp;|&nbsp; <strong>Method:</strong> GET</p>
+                        <p><strong>Payload:</strong> <code>-</code></p>
+                        <p><strong>Evidence:</strong></p>
+                        <pre>DB_PASSWORD=supersecret
+API_KEY=abcd1234
+</pre>
+                        <p><strong>Remediation:</strong> Restrict access to administrative, configuration, and version control artifacts. Block or 404 these paths at the web server / load balancer level. Audit deployments to ensure backup and dev files are never shipped to production.</p>
+                        <p><em>Detected at 2026-04-29 05:43:07 UTC</em></p>
+                    </details>
+                </td>
+            </tr>
+            </tbody>
+    </table>
+
+    <footer>Generated by VulnScan Pro &middot; 2026-04-29 05:43:09 UTC</footer>
+</div>
+</body>
+</html>
