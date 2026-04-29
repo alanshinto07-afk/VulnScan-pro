@@ -49,6 +49,7 @@ __     __    _      ____                  ____
 
            VulnScan Pro - Web App Vulnerability Scanner
                 For AUTHORIZED testing only.
+                Author : alan.sh
 """
 
 
